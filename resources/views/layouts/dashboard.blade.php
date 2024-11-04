@@ -9,6 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
+    @vite(['resources/js/app.js'])
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -262,6 +263,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
+    <script>
+        const userID = "{{ Auth::id() }}";
+    </script>
+
     @stack('scripts')
 </body>
 
