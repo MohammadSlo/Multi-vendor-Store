@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum')->except('index', 'show');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -36,6 +42,13 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:0',
             'compare_price' => 'nullable|numeric|gt:price',
         ]);
+
+        $user = $request->user();
+
+        if (! $user->tokenCan('products.create')) {
+
+            abort(403, 'Not Allowed!');
+        }
 
         $product = Product::create($request->all());
 
@@ -81,6 +94,16 @@ class ProductsController extends Controller
      */
     public function destroy(string $id)
     {
+
+        $user = Auth::guard('sanctum')->user();
+
+        if (! $user->tokenCan('products.delete')) {
+
+            return response([
+                'message' => 'Not Allowed',
+            ], 403);
+        }
+
         Product::destroy($id);
 
         return [
