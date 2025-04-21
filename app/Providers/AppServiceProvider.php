@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\App;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        App::setlocale('ar');
+
         JsonResource::withoutWrapping();
 
         View::composer('layouts.dashboard', function ($view) {
