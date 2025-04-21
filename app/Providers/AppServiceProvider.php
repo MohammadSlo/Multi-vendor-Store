@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        App::setlocale('ar');
+        App::setlocale('de');
 
         JsonResource::withoutWrapping();
 
