@@ -81,9 +81,9 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="top-middle">
                             <ul class="useful-links">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="index.html">{{ trans('Home') }}</a></li>
+                                <li><a href="about-us.html">{{ trans('About') }}</a></li>
+                                <li><a href="contact.html">{{ __('Contact') }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,14 +110,14 @@
                             @else
                                 <div class="user">
                                     <i class="lni lni-user"></i>
-                                    Hello
+                                    {{ __('app.hello') }}
                                 </div>
                                 <ul class="user-login">
                                     <li>
-                                        <a href="{{ route('login') }}">Sign In</a>
+                                        <a href="{{ route('login') }}">{{ Lang::get('app.signin') }}</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('register') }}">Register</a>
+                                        <a href="{{ route('register') }}">{{ __('app.register') }}</a>
                                     </li>
                                 </ul>
                             @endauth
